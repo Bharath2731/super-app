@@ -1,0 +1,162 @@
+.outerContainer {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  display: flex;
+}
+.leftContainer {
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.leftOuter {
+  width: 70%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+.leftOuter > h1 {
+  margin: 0;
+  margin-bottom: 5vh;
+  font-family: "Single Day", cursive;
+  color: #72db73;
+  word-spacing: 0.4rem;
+  letter-spacing: 0.2rem;
+  font-size: 400%;
+  font-weight: 400;
+}
+
+.leftOuter > .bigText {
+  color: #fff;
+  margin: 3vh 0vh 5vh 0vh;
+  font-family: Roboto;
+  font-size: 330%;
+  font-weight: 700;
+  line-height: 130%;
+}
+.categoryContainer {
+  margin: 3vh 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.errorContainer {
+  display: flex;
+  align-items: baseline;
+  margin-top: 3vh;
+}
+.errorContainer > span {
+  color: red;
+  font-size: large;
+  margin-left: 12px;
+  font-family: Roboto;
+  letter-spacing: 1px;
+}
+.errorContainer > img {
+  height: 60%;
+}
+.rightContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50vw;
+  max-width: 50vw;
+  min-width: 50vw;
+}
+.categoryBoxsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 5%;
+}
+.square {
+  border-radius: 30px;
+  margin: 20px 10px;
+  width: 10vw;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  color: white;
+  font-size: larger;
+  font-weight: 500;
+  border: 3px solid white;
+
+}
+.squareGreen{
+    border: 3px solid #11B800;
+    box-shadow: 1px 1px 3px #11B800,1px 1px 10px #6cd061 ;
+}
+.square:hover {
+  transform: scale(1.03);
+  transition: transform 0.1s;
+}
+.box {
+  display: flex;
+}
+.action {
+  border-radius: 20px;
+  background-color: #ff5209;
+}
+.drama {
+  border-radius: 20px;
+  background: #d7a4ff;
+}
+.fantasy {
+  border-radius: 20px;
+  background: #ff4ade;
+}
+.fiction {
+  border-radius: 20px;
+  background: #6cd061;
+}
+.horror {
+  border-radius: 20px;
+  background: #7358ff;
+}
+.music {
+  border-radius: 20px;
+  background: #e61e32;
+}
+.romance {
+  border-radius: 20px;
+  background: #148a08;
+}
+.thriller {
+  border-radius: 20px;
+  background: #84c2ff;
+}
+.western {
+  border-radius: 20px;
+  background: #902500;
+}
+.btnOuter {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-top: 10px;
+  padding: 10px 0;
+}
+.btnOuter > button {
+  padding: 10px 20px;
+  border-radius: 38.857px;
+  background: #148a08;
+  border: none;
+  color: white;
+  font-size: large;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-family: Roboto;
+    font-weight: 400;
+}
+.btnOuter > button:hover{
+    transform: scale(1.05);
+    transition: transform(0.9s);
+}

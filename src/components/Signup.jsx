@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "./signup.css";
+import { useNavigate } from "react-router-dom";
 function Signup() {
+  const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -83,6 +86,7 @@ function Signup() {
       };
       console.log(userData)
       localStorage.setItem("userData",JSON.stringify(userData));
+      navigate("/category")
     }
   }
   return (

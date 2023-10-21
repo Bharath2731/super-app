@@ -1,0 +1,24 @@
+.categoryBox {
+    width: 8vw;
+    margin: 12px;
+    padding: 8px;
+    border-radius: 31px;
+    background: #148a08;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: Roboto;
+    letter-spacing: 2px;
+  }
+  .categoryBox > img {
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+  }
+  .categoryBox > img:hover {
+    transform: scale(1.4);
+    transition: transform 0.1s;
+  }
