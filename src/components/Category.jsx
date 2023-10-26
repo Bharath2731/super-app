@@ -11,7 +11,9 @@ import romance from '../imgs/romance.png'
 import thriller from '../imgs/thriller.png'
 import western from '../imgs/western.png'
 import Categorychip from "./Categorychip";
+import { useNavigate } from "react-router-dom";
 function Category() {
+    const navigate=useNavigate();
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [nothreeSelected, setnoThreeSelected]=useState(false)
     function handleCategoryClick(categoryTitle){
@@ -31,6 +33,7 @@ function Category() {
             let obj=JSON.parse(localStorage.getItem('userData'))
             obj.categories=selectedCategories;
             localStorage.setItem('userData',JSON.stringify(obj))
+            navigate('/user')
         }
     }
   return (
@@ -43,7 +46,7 @@ function Category() {
               Choose your entertainment category
             </h1>
             <div className={styles.categoryContainer}>{selectedCategories.map((Title,idx) => (
-                <Categorychip key={idx} title={Title} fnToRemove={handleCategoryClick} />
+                <Categorychip key={idx} title={Title} fnToRemove={handleCategoryClick} displayX={true} />
               ))}
             </div>
             {nothreeSelected?

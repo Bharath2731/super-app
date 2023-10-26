@@ -4,9 +4,9 @@ import styles from './categorychip.module.css'
 function Categorychip(props) {
   return (
     <div>
-      <div className={styles.categoryBox}>
+      <div className={styles.categoryBox} style={props.chipBg}>
         <span>{props.title}</span>
-        <img src={x}  onClick={()=>props.fnToRemove(props.title)}/>
+        {props.displayX?<img src={x}  onClick={()=>props.fnToRemove(props.title)}/>:''}
       </div>
     </div>
   )
