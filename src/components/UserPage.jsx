@@ -5,6 +5,8 @@ import Categorychip from './Categorychip'
 import axios from 'axios'
 import pressureIcon from '../imgs/pressureIcon.png'
 import windIcon from '../imgs/windIcon.png'
+import timerIncrease from '../imgs/timerIncrease.png'
+import timerDecrease from '../imgs/timerDecrease.png'
 import humidityIcon from '../imgs/humidityIcon.png'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
@@ -16,7 +18,29 @@ function UserPage() {
     const [weatherDetails,setWeatherDetails]=useState('')
     const [newsDetails,setNewsDetails]=useState('')
     const [notes,setNotes]=useState('this  is how I am going to learn MERN Stack....')
+    const [hours,settHours]=useState(0)
+    const [seconds,setSeconds]=useState(0)
+    const [minuits,setMinuits]=useState(0)
+    const [isPlaying,setIsPlaying]=useState(false)
+
+    //timer states
+    const [timerduration , setTimerDuration]= useState((hours*60*60)+(minuits*60)+(seconds))
+    const [key,setKey]=useState(0)
     
+    function handleStartAndStop(){
+        if(isPlaying){
+            settHours(0)
+            setMinuits(0)
+            setSeconds(0)
+            setTimerDuration((hours*60*60)+(minuits*60)+(seconds))
+            setIsPlaying(false)
+            setKey(key+1)
+        }
+        else{
+            setTimerDuration((hours*60*60)+(minuits*60)+(seconds))
+            setIsPlaying(true)
+        }
+    }
     function handleNotesChange(e){
         setNotes(e.target.value)
         const userData = JSON.parse(localStorage.getItem("userData"));
@@ -134,21 +158,64 @@ function UserPage() {
             </div>
             <br />
                 <div className="Usertimer">
-                    <div className="userTimerLeft"></div>
-                    <div className="userTimerRight">
-                        <div className="hoursMinutesSeconds">
-                            <span>Hours</span>
-                            <span>minutes</span>
-                            <span>Seconds</span>
+                    <div className="userTimerLeft">
+                        <div className="timerCircleOuter">
+                            <CountdownCircleTimer
+                            size={180}
+                            key={key} 
+                            duration={(hours*60*60)+(minuits*60)+(seconds)} 
+                            colors={'#FF6A6A'}
+                            isPlaying={isPlaying}
+                            strokeWidth={6}
+                            onComplete={()=>[false,0]}>
+                                {({ remainingTime }) => {if(remainingTime){
+                                    const hours = Math.floor(remainingTime / 3600)
+                                    const minutes = Math.floor((remainingTime % 3600) / 60)
+                                    const seconds = remainingTime % 60
+                                    if (remainingTime === 0) {
+                                        return <div className="timercircle"><p>00:00:00</p></div>;
+                                    }
+                                    return <div className='timercircle'><p>
+                                        {hours<10?'0':''}{hours}:{minuits<10?'0':''}{minutes}:{seconds<10?'0':''}{seconds}</p></div>
+                                }
+                                return <div className="timercircle"><p>00:00:00</p></div>;
+
+                                }}
+                                
+                            </CountdownCircleTimer>
                         </div>
-                        <div className="timerTriangles"></div>
+                    </div>
+                    <div className="userTimerRight">
+                        <div className="userTimerRightTop">
+                            <div className="hours">
+                                <p style={{textAlign:'center'}}>Hours</p>
+                                <img src={timerIncrease} alt="" onClick={()=>{if(hours<24){settHours(hours+1)}}}/>
+                                <p>{hours<10?'0':''}{hours}</p>
+                                <img src={timerDecrease} alt="" onClick={()=>{if(hours>0){settHours(hours-1)}}}/>
+                            </div>
+                            <div className="minuits">
+                                <p style={{textAlign:'center'}}>Minutes</p>
+                                <img src={timerIncrease} alt="" onClick={()=>{if(minuits<60){setMinuits(minuits+1)}}} />
+                                <p>{minuits<10?'0':''}{minuits}</p>
+                                <img src={timerDecrease} alt="" onClick={()=>{if(minuits>0){setMinuits(minuits-1)}}} />
+                            </div>
+                            <div className="seconds">
+                                <p style={{textAlign:'center'}}>Seconds</p>
+                                <img src={timerIncrease} alt="" onClick={()=>{if(seconds<60){setSeconds(seconds+1)}}}/>
+                                <p>{seconds<10?'0':''}{seconds}</p>
+                                <img src={timerDecrease} alt="" onClick={()=>{if(seconds>0){setSeconds(seconds-1)}}}/>
+                            </div>
+                        </div>
+                        <div className="userTimerRightBottom">
+                            <button onClick={handleStartAndStop}>{isPlaying?'Stop':'Start'}</button>
+                        </div>
                     </div>
                 </div>
             </div>
             <div className="news">
-                <div className="newsImg" style={{ backgroundImage: `url(${newsDetails && newsDetails.data.articles[5].urlToImage})` }}>
+                <div className="newsImg" style={{ backgroundImage: `url(${newsDetails && newsDetails.data.articles[3].urlToImage})` }}>
                      <div className="newsTitle">
-                        <h3>{newsDetails&&newsDetails.data.articles[5].title}</h3>
+                        <h3>{newsDetails&&newsDetails.data.articles[3].title}</h3>
                         <div className="newsDateandTime">
                             <div className="newsDate"><p>{date}</p></div>
                             <div className="newsline"></div>
@@ -158,10 +225,13 @@ function UserPage() {
                 </div>
                 <div className="newsText">
                     <p>
-                        {newsDetails&&newsDetails.data.articles[5].content}
+                        {newsDetails&&newsDetails.data.articles[3].content}
                     </p>
                 </div>
             </div>
+        </div>
+        <div className="browseBtn">
+            <button>Browse</button>
         </div>
     </div>
   )

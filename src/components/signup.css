@@ -120,7 +120,7 @@ input:focus {
   cursor:pointer;
   transition: background-color 0.2s ,letter-spacing 0.3s;
 }
-button:hover{
+.signupButton > button:hover{
     background: #54ab5a;
     letter-spacing: 3.2px;
 }
